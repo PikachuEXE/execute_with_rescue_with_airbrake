@@ -66,6 +66,34 @@ class SomeServiceClass
 end
 ```
 
+If you have a custom error that generates error message from the argument, (and you don't want to duplicate how it generates the message)  
+You can do as the following:
+```ruby
+class SomeServiceClass
+  class CustomErrorWithMessage < StandardError
+    def self.new(thing)
+      msg = "#{thing.class} has error"
+      super(msg)
+    end
+  end
+
+  def perform
+    execute_with_rescue do
+      do_something
+    end
+  end
+
+  def do_something
+    # If you cannot provide the argument for the exception at this point then I can't help you
+    # You should really use `begin...rescue...end` for such customization
+    set_default_airbrake_notice_error_class(CustomErrorWithMessage)
+    set_default_airbrake_notice_error_message(CustomErrorWithMessage.new(:foo).message)
+
+    raise StandardError
+  end
+end
+```
+
 ### `#notify_by_airbrake_or_raise`
 **Private** method to be called automatically by `rescue_from StandardError` from the mixin.  
 Call this if you have some custom handling for some error classes  

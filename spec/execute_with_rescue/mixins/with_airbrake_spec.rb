@@ -122,6 +122,21 @@ describe ExecuteWithRescue::Mixins::WithAirbrake do
           call_service
         end
       end
+
+      describe 'setting custom airbrake options with an error that requires argument on initialize' do
+        let(:test_class) { TestServiceWithAirbrakeWithCustomErrorAndMessage }
+
+        specify do
+          expect(Airbrake)
+          .to(receive(:notify_or_ignore)
+              .with(kind_of(StandardError), {
+            error_class: test_class::CustomErrorWithMessage,
+            error_message: "#{:foo.class} has error",
+          }))
+
+          call_service
+        end
+      end
     end
   end
 end

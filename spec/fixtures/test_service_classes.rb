@@ -33,6 +33,23 @@ class TestServiceWithAirbrakeWithErrorAndAirbrakeOption <
     super
   end
 end
+class TestServiceWithAirbrakeWithCustomErrorAndMessage <
+    TestServiceWithAirbrakeWithErrorAndAirbrakeOption
+
+  class CustomErrorWithMessage < StandardError
+    def self.new(thing)
+      msg = "#{thing.class} has error"
+      super(msg)
+    end
+  end
+
+  def do_something
+    set_default_airbrake_notice_error_class(CustomErrorWithMessage)
+    set_default_airbrake_notice_error_message(CustomErrorWithMessage.new(:foo).message)
+
+    raise StandardError
+  end
+end
 
 class TestServiceWithAirbrakeWithExecuteWithRescueCall <
     TestServiceWithAirbrake
