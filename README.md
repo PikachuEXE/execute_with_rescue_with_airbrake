@@ -31,11 +31,11 @@ Or install it yourself as:
 
 Note: You must configurate `airbrake` first or you won't be able to send anything (I have to do the same in `spec_helper`)
 
-**`include ExecuteWithRescue::Mixins::WithAirbrake`**  
+### `include ExecuteWithRescue::Mixins::WithAirbrake`
 Once inlcuded, `rescue_from StandardError, with: :notify_by_airbrake_or_raise` will be called.
 
 
-**`#set_default_airbrake_notice_error_class`**, **`#set_default_airbrake_notice_error_message`**, **`#add_default_airbrake_notice_parameters`**  
+### `#set_default_airbrake_notice_error_class`, `#set_default_airbrake_notice_error_message`, `#add_default_airbrake_notice_parameters`
 **Private** methods to be called within a block in `execute_with_rescue`  
 Every `execute_with_rescue` call will push a new airbrake adapater for the instance (with before hook),  
 so you can have different custom error class, message or/and parameters within the same service/worker class.  
@@ -66,7 +66,7 @@ class SomeServiceClass
 end
 ```
 
-**`#notify_by_airbrake_or_raise`**  
+### `#notify_by_airbrake_or_raise`
 **Private** method to be called automatically by `rescue_from StandardError` from the mixin.  
 Call this if you have some custom handling for some error classes  
 Override this if you have some additional operation like logging for all kinds of error inherited from `StandardError`  
