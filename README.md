@@ -1,11 +1,8 @@
 # ExecuteWithRescueWithAirbrake
 
-TODO: Write a gem description
-
 The Airbrake adapter plus mixin to be used with `execute_with_rescue`.
 
 ## Support
-===========
 Tested against:
 - Active Support of version `3.2`, `4.0` and `4.1` (pre-3.2 got wrong dependency & I don't want to support)
 - MRI `1.9.3`, `2.0.0`, `2.1.0`, `2.1.1`
@@ -32,15 +29,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
-
 Note: You must configurate `airbrake` first or you won't be able to send anything (I have to do the same in `spec_helper`)
 
-### `include ExecuteWithRescue::Mixins::WithAirbrake`
+**`include ExecuteWithRescue::Mixins::WithAirbrake`**  
 Once inlcuded, `rescue_from StandardError, with: :notify_by_airbrake_or_raise` will be called.
 
 
-### `#set_default_airbrake_notice_error_class`, `#set_default_airbrake_notice_error_message`, `#add_default_airbrake_notice_parameters`
+**`#set_default_airbrake_notice_error_class`**, **`#set_default_airbrake_notice_error_message`**, **`#add_default_airbrake_notice_parameters`**  
 **Private** methods to be called within a block in `execute_with_rescue`  
 Every `execute_with_rescue` call will push a new airbrake adapater for the instance (with before hook),  
 so you can have different custom error class, message or/and parameters within the same service/worker class.  
@@ -71,7 +66,7 @@ class SomeServiceClass
 end
 ```
 
-### `#notify_by_airbrake_or_raise`
+**`#notify_by_airbrake_or_raise`**  
 **Private** method to be called automatically by `rescue_from StandardError` from the mixin.  
 Call this if you have some custom handling for some error classes  
 Override this if you have some additional operation like logging for all kinds of error inherited from `StandardError`  
