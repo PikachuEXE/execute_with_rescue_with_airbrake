@@ -14,7 +14,7 @@ describe ExecuteWithRescueWithAirbrake::Adapters::AirbrakeAdapter do
   #before {  }
 
   context 'when exception should not be notified according to Airbrake' do
-    before { Airbrake.configuration.stub(public?: false) }
+    before { allow(Airbrake.configuration).to receive(:public?) { false } }
 
     it 're-raise the rescue error' do
       expect { notify_or_raise }.to raise_error(exception_rescued.class,
@@ -22,7 +22,7 @@ describe ExecuteWithRescueWithAirbrake::Adapters::AirbrakeAdapter do
     end
   end
   context 'when exception should be notified according to Airbrake' do
-    before { Airbrake.configuration.stub(public?: true) }
+    before { allow(Airbrake.configuration).to receive(:public?) { true } }
 
     it 'does not re-raise the rescued error' do
       expect { notify_or_raise }.to_not raise_error
@@ -30,12 +30,14 @@ describe ExecuteWithRescueWithAirbrake::Adapters::AirbrakeAdapter do
   end
 
   context 'assuming Airbrake says it error should be notified' do
-    before { Airbrake.configuration.stub(public?: true) }
+    before { allow(Airbrake.configuration).to receive(:public?) { true } }
 
     it 'calls Airbrake.notify_or_ignore' do
-      Airbrake.should_receive(:notify_or_ignore)
+      expect(Airbrake).to receive(:notify_or_ignore)
 
       notify_or_raise
+
+      # expect(Airbrake).to have_received(:notify_or_ignore)
     end
 
 
@@ -49,7 +51,7 @@ describe ExecuteWithRescueWithAirbrake::Adapters::AirbrakeAdapter do
 
       before do
         # Return the options only
-        Airbrake.stub(:notify_or_ignore) {|*args| args.last }
+        allow(Airbrake).to receive(:notify_or_ignore) {|*args| args.last }
       end
       let(:options_hash) { notify_or_raise }
       subject { options_hash }
@@ -81,7 +83,7 @@ describe ExecuteWithRescueWithAirbrake::Adapters::AirbrakeAdapter do
 
       before do
         # Return the options only
-        Airbrake.stub(:notify_or_ignore) {|*args| args.last }
+        allow(Airbrake).to receive(:notify_or_ignore) {|*args| args.last }
       end
       let(:options_hash) { notify_or_raise }
       subject { options_hash }
@@ -114,7 +116,7 @@ describe ExecuteWithRescueWithAirbrake::Adapters::AirbrakeAdapter do
 
       before do
         # Return the options only
-        Airbrake.stub(:notify_or_ignore) {|*args| args.last }
+        allow(Airbrake).to receive(:notify_or_ignore) {|*args| args.last }
       end
       let(:options_hash) { notify_or_raise }
       let(:parameters_hash) { options_hash[option_key] }

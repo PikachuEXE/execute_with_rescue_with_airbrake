@@ -13,9 +13,9 @@ describe ExecuteWithRescue::Mixins::WithAirbrake do
     let!(:adapter_instance) { adapter_class.new }
     before do
       # Avoid Error
-      test_class_instance
-      .stub(:_execute_with_rescue_current_airbrake_adapter)
-      .and_return(adapter_instance)
+      allow(test_class_instance)
+      .to receive(:_execute_with_rescue_current_airbrake_adapter)
+          .and_return(adapter_instance)
     end
   end
 
@@ -50,7 +50,9 @@ describe ExecuteWithRescue::Mixins::WithAirbrake do
   describe 'delegation' do
     include_context 'when airbrake adapter assumed exists'
 
-    before { adapter_instance.stub(method_name) }
+    before do
+      allow(adapter_instance).to receive(method_name)
+    end
 
     let(:send_message) { test_class_instance.send(method_name) }
 
@@ -82,7 +84,7 @@ describe ExecuteWithRescue::Mixins::WithAirbrake do
   describe 'execution' do
     include_context 'when airbrake adapter assumed exists'
 
-    before { Airbrake.configuration.stub(public?: true) }
+    before { allow(Airbrake.configuration).to receive(:public?) { true } }
 
     describe 'when there is no error raised' do
       specify do
