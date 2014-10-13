@@ -7,11 +7,11 @@ Tested against:
 - Active Support of version `3.2`, `4.0` and `4.1` (pre-3.2 got wrong dependency & I don't want to support)
 - MRI `1.9.3`, `2.0.0`, `2.1.0`, `2.1.1`
 
-[![Build Status](http://img.shields.io/travis/PikachuEXE/execute_with_rescue_with_airbrake.svg)](https://travis-ci.org/PikachuEXE/execute_with_rescue_with_airbrake)
-[![Gem Version](http://img.shields.io/gem/v/execute_with_rescue_with_airbrake.svg)](http://badge.fury.io/rb/execute_with_rescue_with_airbrake)
-[![Dependency Status](http://img.shields.io/gemnasium/PikachuEXE/execute_with_rescue_with_airbrake.svg)](https://gemnasium.com/PikachuEXE/execute_with_rescue_with_airbrake)
-[![Coverage Status](http://img.shields.io/coveralls/PikachuEXE/execute_with_rescue_with_airbrake.svg)](https://coveralls.io/r/PikachuEXE/execute_with_rescue_with_airbrake)
-[![Code Climate](http://img.shields.io/codeclimate/github/PikachuEXE/execute_with_rescue_with_airbrake.svg)](https://codeclimate.com/github/PikachuEXE/execute_with_rescue_with_airbrake)
+[![Build Status](http://img.shields.io/travis/PikachuEXE/execute_with_rescue_with_airbrake.svg?style=flat-square)](https://travis-ci.org/PikachuEXE/execute_with_rescue_with_airbrake)
+[![Gem Version](http://img.shields.io/gem/v/execute_with_rescue_with_airbrake.svg?style=flat-square)](http://badge.fury.io/rb/execute_with_rescue_with_airbrake)
+[![Dependency Status](http://img.shields.io/gemnasium/PikachuEXE/execute_with_rescue_with_airbrake.svg?style=flat-square)](https://gemnasium.com/PikachuEXE/execute_with_rescue_with_airbrake)
+[![Coverage Status](http://img.shields.io/coveralls/PikachuEXE/execute_with_rescue_with_airbrake.svg?style=flat-square)](https://coveralls.io/r/PikachuEXE/execute_with_rescue_with_airbrake)
+[![Code Climate](http://img.shields.io/codeclimate/github/PikachuEXE/execute_with_rescue_with_airbrake.svg?style=flat-square)](https://codeclimate.com/github/PikachuEXE/execute_with_rescue_with_airbrake)
 
 ## Installation
 
