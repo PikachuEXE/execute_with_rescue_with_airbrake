@@ -1,4 +1,4 @@
-require 'active_support/core_ext/hash/indifferent_access'
+require "active_support/core_ext/hash/indifferent_access"
 
 module ExecuteWithRescueWithAirbrake
   module Adapters
@@ -19,15 +19,14 @@ module ExecuteWithRescueWithAirbrake
       # @see should_raise?
       def notify_or_raise(ex)
         if should_raise?
-          raise ex
+          fail ex
         else
           notify_or_ignore_with_options(ex)
         end
       end
 
-
       # set the default `error_class` option when notify by Airbrake
-      # It must can be init without argument, this method won't check it
+      # It must can be init without argument, this method won"t check it
       # Pass nil to clear it
       #
       # @param message [NilClass, Class]
@@ -35,7 +34,7 @@ module ExecuteWithRescueWithAirbrake
       #
       # @raise [ArgumentError] when class is not nil or symbol
       def set_default_airbrake_notice_error_class(klass)
-        (klass.nil? || klass.is_a?(Class)) or raise ArgumentError
+        (klass.nil? || klass.is_a?(Class)) || fail(ArgumentError)
 
         @default_airbrake_notice_error_class = klass
       end
@@ -48,7 +47,7 @@ module ExecuteWithRescueWithAirbrake
       #
       # @raise [ArgumentError] when message is not nil or string
       def set_default_airbrake_notice_error_message(message)
-        (message.nil? || message.is_a?(String)) or raise ArgumentError
+        (message.nil? || message.is_a?(String)) || fail(ArgumentError)
 
         @default_airbrake_notice_error_message = message
       end
@@ -64,18 +63,16 @@ module ExecuteWithRescueWithAirbrake
       # @raise [ParameterKeyConflict]
       #   when new_params contains keys conflicting with existing keys
       def add_default_airbrake_notice_parameters(new_params)
-        new_params.is_a?(Hash) or
-          (raise Errors::InvalidParameters)
-        new_params =
-          new_params.with_indifferent_access
+        new_params.is_a?(Hash) || fail(Errors::InvalidParameters)
+        new_params = new_params.with_indifferent_access
 
         # find out common element size (which should be 0)
-        common_keys =
-          default_airbrake_notice_parameters.keys &
-          new_params.keys
+        common_keys = default_airbrake_notice_parameters.keys & new_params.keys
         if common_keys.size > 0
-          raise Errors::ParameterKeyConflict,
-                "Conflicting keys: #{common_keys.inspect}"
+          fail(
+            Errors::ParameterKeyConflict,
+            "Conflicting keys: #{common_keys.inspect}",
+          )
         end
 
         default_airbrake_notice_parameters.merge!(new_params)
@@ -88,22 +85,16 @@ module ExecuteWithRescueWithAirbrake
       end
 
       def build_notice_options
-        result_options_hash = Hash.new
+        h = {}
 
-        if @default_airbrake_notice_error_class
-          result_options_hash[:error_class] =
-            @default_airbrake_notice_error_class
-        end
-        if @default_airbrake_notice_error_message
-          result_options_hash[:error_message] =
-            @default_airbrake_notice_error_message
-        end
-        unless default_airbrake_notice_parameters.empty?
-          result_options_hash[:parameters] =
-            default_airbrake_notice_parameters.symbolize_keys
-        end
+        @default_airbrake_notice_error_class &&
+          h[:error_class] = @default_airbrake_notice_error_class
+        @default_airbrake_notice_error_message &&
+          h[:error_message] = @default_airbrake_notice_error_message
+        !default_airbrake_notice_parameters.empty? &&
+          h[:parameters] = default_airbrake_notice_parameters.symbolize_keys
 
-        result_options_hash
+        h
       end
 
       def default_airbrake_notice_parameters

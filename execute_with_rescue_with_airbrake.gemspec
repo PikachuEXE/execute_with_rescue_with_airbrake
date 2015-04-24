@@ -1,14 +1,16 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'execute_with_rescue_with_airbrake/version'
+require "execute_with_rescue_with_airbrake/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "execute_with_rescue_with_airbrake"
   spec.version       = ExecuteWithRescueWithAirbrake::VERSION
   spec.authors       = ["PikachuEXE"]
   spec.email         = ["pikachuexe@gmail.com"]
-  spec.summary       = %q{The Airbrake adapter plus mixin to be used with `execute_with_rescue`}
+  spec.summary       = <<-SUMMARY
+    The Airbrake adapter plus mixin to be used with `execute_with_rescue`
+  SUMMARY
   spec.homepage      = "http://github.com/PikachuEXE/execute_with_rescue_with_airbrake"
   spec.license       = "MIT"
 
@@ -27,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec-its", "~> 1.0"
   spec.add_development_dependency "coveralls", ">= 0.7"
   spec.add_development_dependency "gem-release", ">= 0.7"
+  spec.add_development_dependency "rubocop", "~> 0.30"
 
   spec.required_ruby_version = ">= 1.9.3"
 

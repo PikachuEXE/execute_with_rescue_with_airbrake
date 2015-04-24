@@ -17,7 +17,7 @@ end
 
 class TestServiceWithAirbrakeWithError < TestServiceWithAirbrake
   def do_something
-    raise StandardError
+    fail StandardError
   end
 end
 class TestServiceWithAirbrakeWithErrorAndAirbrakeOption <
@@ -27,8 +27,8 @@ class TestServiceWithAirbrakeWithErrorAndAirbrakeOption <
 
   def do_something
     set_default_airbrake_notice_error_class(CustomError)
-    set_default_airbrake_notice_error_message('hi')
-    add_default_airbrake_notice_parameters({foo: :bar})
+    set_default_airbrake_notice_error_message("hi")
+    add_default_airbrake_notice_parameters(foo: :bar)
 
     super
   end
@@ -47,7 +47,7 @@ class TestServiceWithAirbrakeWithCustomErrorAndMessage <
     set_default_airbrake_notice_error_class(CustomErrorWithMessage)
     set_default_airbrake_notice_error_message(CustomErrorWithMessage.new(:foo).message)
 
-    raise StandardError
+    fail StandardError
   end
 end
 
@@ -55,7 +55,7 @@ class TestServiceWithAirbrakeWithExecuteWithRescueCall <
     TestServiceWithAirbrake
 
   def do_something
-    set_default_airbrake_notice_error_message('test')
+    set_default_airbrake_notice_error_message("test")
   end
 end
 class TestServiceWithAirbrakeWithoutExecuteWithRescueCall <
