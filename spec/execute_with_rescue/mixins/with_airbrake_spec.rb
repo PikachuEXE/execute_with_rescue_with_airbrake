@@ -117,7 +117,7 @@ describe ExecuteWithRescue::Mixins::WithAirbrake do
               error_class:   test_class::CustomError,
               error_message: "hi",
               parameters:    {
-                foo: :bar,
+                foo: :bar
               },
             )
 

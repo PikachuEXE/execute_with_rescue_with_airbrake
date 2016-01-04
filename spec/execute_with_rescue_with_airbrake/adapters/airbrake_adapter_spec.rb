@@ -72,9 +72,8 @@ describe ExecuteWithRescueWithAirbrake::Adapters::AirbrakeAdapter do
 
     describe "#set_default_airbrake_notice_error_message" do
       let(:set_error_message) do
-        instance.set_default_airbrake_notice_error_message(
-          default_error_message,
-        )
+        instance.
+          set_default_airbrake_notice_error_message(default_error_message)
       end
       let(:default_error_message) { nil }
       let(:option_key) { :error_message }
