@@ -17,3 +17,7 @@ appraise "rails_4_2" do
   version = "~> 4.2.0"
   gem 'activesupport', version
 end
+
+appraise "rails_5_0" do
+  gem 'activesupport', ">= 5.0.0.beta1", "<= 5.1"
+end
