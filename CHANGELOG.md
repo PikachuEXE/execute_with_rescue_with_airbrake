@@ -15,6 +15,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Nothing
+
+  
+## [0.0.3]
+
+### Fixed
+
 - Fix one of version constraints for gem `airbrake` fixed from `<= 5` to `< 5`
   Also test against all supported major versions of `airbrake`
 
@@ -33,6 +40,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Initial Release
 
 
-[Unreleased]: https://github.com/PikachuEXE/execute_with_rescue_with_airbrake/compare/v0.0.2...HEAD
+[Unreleased]: https://github.com/PikachuEXE/execute_with_rescue_with_airbrake/compare/v0.0.3...HEAD
+[0.0.3]:      https://github.com/PikachuEXE/execute_with_rescue_with_airbrake/compare/v0.0.2...v0.0.3
 [0.0.2]:      https://github.com/PikachuEXE/execute_with_rescue_with_airbrake/compare/v0.0.1...v0.0.2
 [0.0.1]:      https://github.com/PikachuEXE/execute_with_rescue_with_airbrake/releases/tag/v0.0.1
