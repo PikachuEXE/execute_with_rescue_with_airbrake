@@ -11,7 +11,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Nothing
+- Drop support for Airbrake 3.x
+- Drop support for Ruby < 2.1
 
 ### Fixed
 

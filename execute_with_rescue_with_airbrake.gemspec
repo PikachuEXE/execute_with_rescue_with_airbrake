@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "execute_with_rescue", "~> 0.0", ">= 0.0.1"
-  spec.add_dependency "airbrake", ">= 3.1", "< 5"
+  spec.add_dependency "airbrake", ">= 4.0.0", "< 5"
 
   spec.add_development_dependency "bundler", "~> 1.5"
   spec.add_development_dependency "rake"
@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "gem-release", ">= 0.7"
   spec.add_development_dependency "rubocop", "~> 0.30"
 
-  spec.required_ruby_version = ">= 1.9.3"
+  spec.required_ruby_version = ">= 2.1.0"
 
   spec.required_rubygems_version = ">= 1.4.0"
 end
